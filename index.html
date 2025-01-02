@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - Backend Engineer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #333;
+            --secondary-color: #666;
+            --background-color: #fff;
+            --accent-color: #ddd;
+            --font-family: 'Space Mono', 'Courier New', Courier, monospace;
+        }
+
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            color: var(--primary-color);
+            background-color: var(--background-color);
+            letter-spacing: -0.5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            padding: 4rem 0;
+            text-align: center;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border-bottom: 4px solid var(--accent-color);
+        }
+
+        header h1 {
+            letter-spacing: -1px;
+            margin-top: 1rem;
+            display: inline-block;
+            border-right: 2px solid var(--background-color);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typewriter 2s steps(20, end),
+            blink 0.5s step-end infinite alternate;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            border: 3px solid var(--background-color);
+            background-color: var(--accent-color);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        nav {
+            background-color: var(--accent-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav li {
+            animation: fadeInUp 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+
+        nav li:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        nav li:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        nav li:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        nav li:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        nav li:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav a:after {
+            content: "_";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover:after {
+            opacity: 1;
+        }
+
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--accent-color);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        section:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        section:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        section:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        section:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+
+        h2 {
+            margin-bottom: 1rem;
+            font-weight: bold;
+            position: relative;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        h2:before {
+            content: ">> ";
+            color: var(--secondary-color);
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.8s forwards;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            border: 2px solid var(--accent-color);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .projects .project-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .projects .project-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .projects .project-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 4px 4px 0 var(--primary-color);
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            background-color: var(--accent-color);
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            border: 1px solid var(--primary-color);
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .skills .skill-tag:nth-child(3n+1) {
+            animation-delay: 0.1s;
+        }
+
+        .skills .skill-tag:nth-child(3n+2) {
+            animation-delay: 0.2s;
+        }
+
+        .skills .skill-tag:nth-child(3n+3) {
+            animation-delay: 0.3s;
+        }
+
+        .experience-item {
+            margin-bottom: 2rem;
+            padding-left: 1rem;
+            border-left: 2px solid var(--accent-color);
+            opacity: 0;
+            animation: slideIn 0.8s ease-out forwards;
+        }
+
+        .experience-item:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .experience-item:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            border-top: 4px solid var(--accent-color);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--background-color);
+            text-decoration: none;
+            position: relative;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .social-links a:nth-child(1) {
+            animation-delay: 1.2s;
+        }
+
+        .social-links a:nth-child(2) {
+            animation-delay: 1.4s;
+        }
+
+        .social-links a:nth-child(3) {
+            animation-delay: 1.6s;
+        }
+
+        .social-links a:after {
+            content: "_";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .social-links a:hover:after {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <img src="/api/placeholder/150/150" alt="Profile Picture" class="profile-img">
+        <h1>Marvellous Akinola</h1>
+        <p>Python | Django Backend Engineer</p>
+    </div>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Backend engineer with over 5 years of experience, specializing in building robust web solutions using Django
+            framework and optimizing development workflows. Proven track record in database management, API integration,
+            and performance optimization. Currently pursuing MSc. in Computer Science at the University of Ibadan.</p>
+    </section>
+
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects">
+            <div class="project-card">
+                <h3>Sharp & Gather Platform</h3>
+                <p>Designed and implemented scalable model architecture for agricultural finance management, featuring
+                    bulk farmer transactions, auto-remittance systems, and team approval workflows. Enhanced platform
+                    efficiency with improved user role handling and reward systems.</p>
+                <div class="skills">
+                    <span class="skill-tag">Django</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">API Development</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Paytime Payroll System</h3>
+                <p>Developed a comprehensive payroll system with features including pension remittance, employee
+                    management, PAYE exemption handling, and automated employee onboarding. Implemented secure password
+                    reset functionality and optimized payslip generation.</p>
+                <div class="skills">
+                    <span class="skill-tag">Django REST</span>
+                    <span class="skill-tag">PostgreSQL</span>
+                    <span class="skill-tag">System Design</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>PiHealth Monitoring System</h3>
+                <p>Built backend services for a health monitoring application integrating with smart hardware devices.
+                    Implemented comprehensive tracking and reporting features using Django REST Framework, with MySQL
+                    backend for efficient data management.</p>
+                <div class="skills">
+                    <span class="skill-tag">Django REST</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">API Integration</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Django</span>
+            <span class="skill-tag">Django REST Framework</span>
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">SQLite</span>
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">GCP</span>
+            <span class="skill-tag">Azure</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Clean Code</span>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>Work Experience</h2>
+        <div class="experience-item">
+            <h3>Software Engineer - Crop2Cash Limited</h3>
+            <p>Oct 2019 - Present</p>
+            <p>Led development of multiple agricultural technology solutions, improving codebase performance by 25%.
+                Developed weather advisory systems and integrated blockchain payment services. Mentor to junior
+                engineers with focus on knowledge transfer and collaboration.</p>
+        </div>
+        <div class="experience-item">
+            <h3>Python/Django Developer - AipiData</h3>
+            <p>Dec 2022 - Dec 2023</p>
+            <p>Developed backend services for PiHealth, implementing comprehensive health monitoring features and report
+                generation using Django REST Framework. Collaborated with cross-functional teams for seamless service
+                integration.</p>
+        </div>
+        <div class="experience-item">
+            <h3>Python/Django Developer - Fynne</h3>
+            <p>Aug 2020 - May 2021</p>
+            <p>Built RESTful APIs for beauty service platform, implementing booking and availability scheduling systems.
+                Integrated Firebase Cloud Messaging for real-time notifications and maintained high code quality through
+                testing.</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="social-links">
+            <a href="https://github.com/yourusername">GitHub</a>
+            <a href="https://linkedin.com/in/yourusername">LinkedIn</a>
+            <a href="mailto:tmarvellous41@gmail.com">Email</a>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2025 Marvellous Akinola. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>
