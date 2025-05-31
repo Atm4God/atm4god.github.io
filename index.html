@@ -348,10 +348,164 @@
 
         .project-card {
             border: 2px solid var(--accent-color);
-            padding: 1.5rem;
+            padding: 0;
             transition: all 0.3s ease;
             opacity: 0;
             animation: fadeInUp 0.5s ease-out forwards;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            background: white;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .see-more-btn {
+            background-color: var(--accent-color);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            font-family: var(--font-family), monospace;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .see-more-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: var(--background-color);
+            margin: 2% auto;
+            padding: 2rem;
+            border: 2px solid var(--accent-color);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close {
+            color: var(--secondary-color);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 1;
+            cursor: pointer;
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+        }
+
+        .close:hover {
+            color: var(--primary-color);
+        }
+
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .modal-image:hover {
+            transform: scale(1.05);
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-image.expanded {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            width: 90vw;
+            height: 90vh;
+            max-width: 1200px;
+            max-height: 800px;
+            z-index: 2000;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+            object-fit: contain;
+            background: var(--background-color);
+        }
+
+        .image-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1999;
+            cursor: pointer;
+        }
+
+        .modal h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .modal-description {
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .modal .skills {
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                padding: 1rem;
+            }
+
+            .modal-gallery {
+                grid-template-columns: 1fr;
+            }
         }
 
         .projects .project-card:nth-child(1) {
@@ -508,53 +662,78 @@
 <main class="container">
     <section id="about">
         <h2>About Me</h2>
-        <p>Hi there!</p>
         <p>
-            I’m a <b>backend engineer</b> with over 5 years of experience specializing in building <b>reliable web
-            solutions</b> using the <b>Django framework</b>. I have a proven track record in <b>database management</b>,
-            <b>API
-                integration</b>, and <b>performance optimization</b>. Currently, I’m advancing my expertise with an <b>MSc
-            in
-            Computer Science</b> at the <b>University of Ibadan</b>, driven by a passion for innovation and continuous
-            learning.</p>
+            Hello, I'm <b>Marvellous</b> — a passionate <b>backend engineer</b> who transforms complex business requirements into elegant, scalable solutions. With <b>6+
+            years of hands-on experience</b> crafting robust web applications, I specialize in architecting systems that don't just work, but excel under pressure.
+        </p>
+        <p>
+            As a <b>two-time degree holder</b> with an <b>MSc in Computer Science</b> from the <b>University of Ibadan</b> and extensive industry experience, I bridge the gap between academic theory and real-world application. My expertise spans <b>Django/Python ecosystems</b>, <b>database optimization</b>, <b>API architecture</b>, and <b>cloud infrastructure</b> — enabling businesses to scale efficiently while maintaining code quality.
+        </p>
+        <p>
+            I thrive on solving challenging problems, mentoring fellow engineers, and building systems that make a meaningful impact. Whether it's optimizing performance bottlenecks or architecting new features from scratch, I bring both technical excellence and strategic thinking to every project.
+        </p>
     </section>
 
     <section id="projects">
         <h2>Featured Projects</h2>
         <div class="projects">
-            <div class="project-card">
-                <h3>Sharp & Gather Web App</h3>
-                <p>Designed and implemented scalable model architecture for agricultural finance management, featuring
-                    bulk farmer transactions, auto-remittance systems, and team approval workflows. Enhanced platform
-                    efficiency with improved user role handling and reward systems.</p>
-                <div class="skills">
-                    <span class="skill-tag">Django</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">API Development</span>
+            <div class="project-card" onclick="openModal('nhfa-modal')">
+                <img src="USSD and NHFA/Screenshot 2025-05-31 at 23.47.08.png" alt="NHFA System" class="project-image">
+                <div class="project-content">
+                    <h3>NHFA - National Hotline for Agriculture</h3>
+                    <p>AI-powered toll-free agricultural advisory system providing two-way communication and real-time farming guidance to farmers nationwide.</p>
+                    <button class="see-more-btn">See More</button>
                 </div>
             </div>
-            <div class="project-card">
-                <h3>Paytime Payroll System</h3>
-                <p>Developed a comprehensive payroll system with features including pension remittance, employee
-                    management, PAYE exemption handling, and automated employee onboarding. Implemented secure password
-                    reset functionality and optimized payslip generation.</p>
-                <div class="skills">
-                    <span class="skill-tag">Django REST</span>
-                    <span class="skill-tag">PostgreSQL</span>
-                    <span class="skill-tag">System Design</span>
+            <div class="project-card" onclick="openModal('ussd-modal')">
+                <img src="USSD and NHFA/Screenshot 2025-05-31 at 23.47.28.png" alt="CashCard USSD" class="project-image">
+                <div class="project-content">
+                    <h3>CashCard USSD Platform</h3>
+                    <p>Comprehensive USSD-based financial inclusion platform providing marketplace, wallet services, and bookkeeping for rural farmers.</p>
+                    <button class="see-more-btn">See More</button>
                 </div>
             </div>
-            <div class="project-card">
-                <h3>PiHealth Monitoring System</h3>
-                <p>Built backend services for a health monitoring application integrating with smart hardware devices.
-                    Implemented comprehensive tracking and reporting features using Django REST Framework, with MySQL
-                    backend for efficient data management.</p>
-                <div class="skills">
-                    <span class="skill-tag">Django REST</span>
-                    <span class="skill-tag">MySQL</span>
-                    <span class="skill-tag">API Integration</span>
+            <div class="project-card" onclick="openModal('gather-modal')">
+                <img src="Gather/Screenshot 2025-05-30 at 15.51.20.png" alt="GatherApp" class="project-image">
+                <div class="project-content">
+                    <h3>GatherApp - Digital Agriculture Platform</h3>
+                    <p>Comprehensive digital agriculture platform for farm data management and advisory services in Nigeria's agricultural ecosystem.</p>
+                    <button class="see-more-btn">See More</button>
                 </div>
             </div>
+            <div class="project-card" onclick="openModal('sharp-modal')">
+                <img src="Sharp/Screenshot 2025-05-30 at 15.56.56.png" alt="Sharp" class="project-image">
+                <div class="project-content">
+                    <h3>Sharp - Agricultural Finance Platform</h3>
+                    <p>Content management system for agricultural operations with digital marketplace for farmers to access products and services.</p>
+                    <button class="see-more-btn">See More</button>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('zeefi-modal')">
+                <img src="Zeefi/Screenshot 2025-05-31 at 22.34.39.png" alt="Zeefi" class="project-image">
+                <div class="project-content">
+                    <h3>Zeefi - Cross-Border Fintech Platform</h3>
+                    <p>Fintech platform bridging financial services between Canada and Nigeria for seamless cross-border money transfers.</p>
+                    <button class="see-more-btn">See More</button>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('paytime-modal')">
+                <img src="Paytime/Screenshot 2025-05-30 at 16.13.49.png" alt="Paytime" class="project-image">
+                <div class="project-content">
+                    <h3>Paytime - Payroll Management System</h3>
+                    <p>Comprehensive payroll system with pension remittance, employee management, and automated onboarding workflows.</p>
+                    <button class="see-more-btn">See More</button>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('website-modal')">
+                <img src="Website/Screenshot 2025-05-30 at 16.10.08.png" alt="Crop2Cash Website" class="project-image">
+                <div class="project-content">
+                    <h3>Crop2Cash Corporate Website</h3>
+                    <p>Enhanced corporate website with integrated blog system and dynamic forms for Nigeria's leading agricultural technology platform.</p>
+                    <button class="see-more-btn">See More</button>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -564,15 +743,63 @@
             <span class="skill-tag">Python</span>
             <span class="skill-tag">Django</span>
             <span class="skill-tag">Django REST Framework</span>
+<!--            <span class="skill-tag">FastAPI</span>-->
             <span class="skill-tag">PostgreSQL</span>
             <span class="skill-tag">MySQL</span>
-            <span class="skill-tag">SQLite</span>
+            <span class="skill-tag">Redis</span>
+            <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">Elasticsearch</span>
             <span class="skill-tag">AWS</span>
-            <span class="skill-tag">GCP</span>
-            <span class="skill-tag">Azure</span>
+            <span class="skill-tag">EC2</span>
+            <span class="skill-tag">S3</span>
+<!--            <span class="skill-tag">RDS</span>-->
+<!--            <span class="skill-tag">Lambda</span>-->
+<!--            <span class="skill-tag">CloudFormation</span>-->
             <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Kubernetes</span>
+            <span class="skill-tag">Docker Compose</span>
+            <span class="skill-tag">CI/CD</span>
+            <span class="skill-tag">GitHub Actions</span>
+<!--            <span class="skill-tag">Jenkins</span>-->
+            <span class="skill-tag">Nginx</span>
+            <span class="skill-tag">Gunicorn</span>
+            <span class="skill-tag">Celery</span>
+            <span class="skill-tag">RabbitMQ</span>
+            <span class="skill-tag">Message Queues</span>
+            <span class="skill-tag">Microservices</span>
+            <span class="skill-tag">API Design</span>
+<!--            <span class="skill-tag">GraphQL</span>-->
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">WebSockets</span>
+            <span class="skill-tag">OAuth2</span>
+            <span class="skill-tag">JWT</span>
+            <span class="skill-tag">Security Best Practices</span>
+            <span class="skill-tag">SQL Optimization</span>
+            <span class="skill-tag">Database Design</span>
+            <span class="skill-tag">Data Modeling</span>
+            <span class="skill-tag">Performance Tuning</span>
+            <span class="skill-tag">Load Balancing</span>
+            <span class="skill-tag">Caching Strategies</span>
+            <span class="skill-tag">Monitoring & Logging</span>
+<!--            <span class="skill-tag">ELK Stack</span>-->
+<!--            <span class="skill-tag">Prometheus</span>-->
+<!--            <span class="skill-tag">Grafana</span>-->
             <span class="skill-tag">Git</span>
-            <span class="skill-tag">Clean Code</span>
+            <span class="skill-tag">GitFlow</span>
+            <span class="skill-tag">Code Review</span>
+            <span class="skill-tag">Test-Driven Development</span>
+            <span class="skill-tag">Unit Testing</span>
+            <span class="skill-tag">Integration Testing</span>
+            <span class="skill-tag">pytest</span>
+            <span class="skill-tag">Clean Architecture</span>
+            <span class="skill-tag">SOLID Principles</span>
+            <span class="skill-tag">Design Patterns</span>
+            <span class="skill-tag">Agile/Scrum</span>
+            <span class="skill-tag">Technical Leadership</span>
+            <span class="skill-tag">System Design</span>
+            <span class="skill-tag">Scalability</span>
+            <span class="skill-tag">High Availability</span>
+<!--            <span class="skill-tag">Disaster Recovery</span>-->
         </div>
     </section>
 
@@ -634,6 +861,297 @@
             nav.classList.remove('active');
         });
     });
+
+    // Modal functionality
+    function openModal(modalId) {
+        document.getElementById(modalId).style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    // Image expansion functionality
+    function expandImage(img) {
+        const overlay = document.getElementById('image-overlay');
+        const expandedImg = img.cloneNode(true);
+        
+        expandedImg.classList.add('expanded');
+        expandedImg.onclick = function() {
+            closeExpandedImage();
+        };
+        
+        overlay.style.display = 'block';
+        document.body.appendChild(expandedImg);
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeExpandedImage() {
+        const overlay = document.getElementById('image-overlay');
+        const expandedImg = document.querySelector('.modal-image.expanded');
+        
+        if (expandedImg) {
+            expandedImg.remove();
+        }
+        overlay.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // Add click event to all modal images
+    document.addEventListener('DOMContentLoaded', function() {
+        const modalImages = document.querySelectorAll('.modal-image');
+        modalImages.forEach(img => {
+            img.onclick = function(e) {
+                e.stopPropagation();
+                expandImage(this);
+            };
+        });
+    });
 </script>
+
+<!-- Image Overlay -->
+<div id="image-overlay" class="image-overlay" onclick="closeExpandedImage()"></div>
+
+<!-- Modals -->
+<div id="gather-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('gather-modal')">&times;</span>
+        <h3>GatherApp - Digital Agriculture Platform</h3>
+        <div class="modal-description">
+            <p>GatherApp is a comprehensive digital agriculture platform designed to modernize farm data management and advisory services within Nigeria's agricultural ecosystem. The application serves as a bridge between traditional agricultural extension services and modern technology solutions.</p>
+            
+            <h4>Core Features:</h4>
+            <ul>
+                <li><strong>Farm Registration & Mapping:</strong> Enables agricultural extension agents to register farmers and capture precise GPS-based farm location data</li>
+                <li><strong>Crop Advisory System:</strong> Provides structured, crop-specific advisory services for major crops including maize, rice, and tomato</li>
+                <li><strong>8-Stage Seasonal Guidance:</strong> Comprehensive advisory system covering the complete agricultural cycle from land preparation to post-harvest storage</li>
+                <li><strong>Real-time Progress Tracking:</strong> Monitors farm activities and advisory implementation progress</li>
+                <li><strong>SMS Communication:</strong> Automated SMS-based communication system for farmer outreach</li>
+                <li><strong>Yield Statistics:</strong> Tracks and analyzes crop yield data and performance metrics</li>
+                <li><strong>Issue Reporting:</strong> Comprehensive issue reporting system with severity impact assessment</li>
+                <li><strong>Financial Integration:</strong> Wallet management and financial services integration</li>
+            </ul>
+        </div>
+        <div class="skills">
+            <span class="skill-tag">Django REST Framework</span>
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">Geographic Data</span>
+            <span class="skill-tag">SMS Integration</span>
+            <span class="skill-tag">RESTful API</span>
+        </div>
+        <div class="modal-gallery">
+            <img src="Gather/Screenshot 2025-05-30 at 15.51.20.png" alt="GatherApp Dashboard" class="modal-image">
+            <img src="Gather/Screenshot 2025-05-30 at 15.52.39.png" alt="GatherApp Farm Registration" class="modal-image">
+            <img src="Gather/Screenshot 2025-05-30 at 15.53.01.png" alt="GatherApp Advisory System" class="modal-image">
+            <img src="Gather/Screenshot 2025-05-30 at 15.54.04.png" alt="GatherApp Progress Tracking" class="modal-image">
+            <img src="Gather/Screenshot 2025-05-30 at 15.54.56.png" alt="GatherApp Analytics" class="modal-image">
+        </div>
+    </div>
+</div>
+
+<div id="sharp-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('sharp-modal')">&times;</span>
+        <h3>Sharp - Agricultural Finance Platform</h3>
+        <div class="modal-description">
+            <p>SHARP is a content management system designed for agricultural operations. The platform enables farmers to browse and purchase agricultural products, manage their orders, and access various farming services.</p>
+            
+            <p>SHARP provides a digital marketplace where farmers can find agricultural inputs, advisory services, equipment, livestock products, and insurance. The system handles user profiles, product catalogs, order management, and communication features to support agricultural commerce and farmer engagement.</p>
+        </div>
+        <div class="skills">
+            <span class="skill-tag">Django</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">API Development</span>
+            <span class="skill-tag">E-commerce</span>
+            <span class="skill-tag">Order Management</span>
+        </div>
+        <div class="modal-gallery">
+            <img src="Sharp/Screenshot 2025-05-30 at 15.56.56.png" alt="Sharp Dashboard" class="modal-image">
+            <img src="Sharp/Screenshot 2025-05-30 at 16.00.20.png" alt="Sharp Product Catalog" class="modal-image">
+            <img src="Sharp/Screenshot 2025-05-30 at 16.00.52.png" alt="Sharp Order Management" class="modal-image">
+            <img src="Sharp/Screenshot 2025-05-30 at 16.03.59.png" alt="Sharp User Interface" class="modal-image">
+        </div>
+    </div>
+</div>
+
+<div id="paytime-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('paytime-modal')">&times;</span>
+        <h3>Paytime - Payroll Management System</h3>
+        <div class="modal-description">
+            <p>Paytime is a comprehensive payroll management system built with Django that streamlines employee compensation and benefits administration for organizations. The platform manages the complete employee lifecycle from onboarding and authentication to payroll processing and pension management.</p>
+            
+            <h4>Key Features:</h4>
+            <ul>
+                <li><strong>User Authentication:</strong> Robust authentication with bank account verification through Paystack integration</li>
+                <li><strong>Role-based Access Control:</strong> Department management and automated onboarding workflows</li>
+                <li><strong>Payroll Processing:</strong> Detailed payslips with comprehensive salary breakdowns including allowances, deductions, and tax calculations</li>
+                <li><strong>Pension Management:</strong> Automated pension contributions, PFA remittances, and compliance reporting</li>
+                <li><strong>Audit Trails:</strong> Complete financial transaction tracking and professional PDF document generation</li>
+            </ul>
+        </div>
+        <div class="skills">
+            <span class="skill-tag">Django REST Framework</span>
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">Paystack Integration</span>
+            <span class="skill-tag">PDF Generation</span>
+            <span class="skill-tag">Financial Systems</span>
+        </div>
+        <div class="modal-gallery">
+            <img src="Paytime/Screenshot 2025-05-30 at 16.13.49.png" alt="Paytime Dashboard" class="modal-image">
+            <img src="Paytime/Screenshot 2025-05-31 at 22.30.34.png" alt="Paytime Payroll Interface" class="modal-image">
+        </div>
+    </div>
+</div>
+
+<div id="zeefi-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('zeefi-modal')">&times;</span>
+        <h3>Zeefi - Cross-Border Fintech Platform</h3>
+        <div class="modal-description">
+            <p>ZEEFI is a fintech platform designed to bridge financial services between Canada and Nigeria, enabling seamless cross-border money transfers and currency exchange. The platform serves as a digital wallet solution that allows users to send money from Canada to Nigeria using multiple payment methods.</p>
+            
+            <h4>Core Capabilities:</h4>
+            <ul>
+                <li><strong>Cross-Border Transfers:</strong> Interac e-Transfer for Canadian transactions and direct bank transfers for Nigerian recipients</li>
+                <li><strong>KYC Compliance:</strong> Comprehensive verification using BVN and NIN validation through ZeehAfrica integration</li>
+                <li><strong>Multi-Currency Operations:</strong> Real-time exchange rates and automated wallet creation</li>
+                <li><strong>Transaction Management:</strong> Robust tracking with detailed status monitoring</li>
+                <li><strong>Additional Features:</strong> Referral system, multi-language support, and administrative oversight tools</li>
+            </ul>
+        </div>
+        <div class="skills">
+            <span class="skill-tag">Django REST Framework</span>
+            <span class="skill-tag">Multi-Currency</span>
+            <span class="skill-tag">KYC Integration</span>
+            <span class="skill-tag">Payment Processing</span>
+            <span class="skill-tag">Financial Compliance</span>
+        </div>
+        <div class="modal-gallery">
+            <img src="Zeefi/Screenshot 2025-05-31 at 22.34.39.png" alt="Zeefi Dashboard" class="modal-image">
+            <img src="Zeefi/Screenshot 2025-05-31 at 22.35.07.png" alt="Zeefi Transfer Interface" class="modal-image">
+            <img src="Zeefi/Screenshot 2025-05-31 at 22.35.34.png" alt="Zeefi Wallet Management" class="modal-image">
+        </div>
+    </div>
+</div>
+
+<div id="website-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('website-modal')">&times;</span>
+        <h3>Crop2Cash Corporate Website</h3>
+        <div class="modal-description">
+            <p>Enhanced the corporate website for Crop2Cash, Nigeria's leading agricultural technology platform serving over 500,000 farmers across 13 states. My primary contributions focused on developing robust content management capabilities and interactive user engagement features.</p>
+            
+            <h4>Key Contributions:</h4>
+            <ul>
+                <li><strong>Blog Integration System:</strong> Architected and implemented a comprehensive blog management system enabling the marketing team to publish agricultural insights, community stories, and company updates. Features include rich text editing, image management, SEO optimization, and automated social media integration</li>
+                <li><strong>Dynamic Contact Forms:</strong> Developed sophisticated form handling systems including agent recruitment forms, business inquiry forms, and customer support tickets with automated email notifications and CRM integration</li>
+                <li><strong>Content Management Backend:</strong> Built admin interfaces for non-technical staff to manage blog posts, update company information, and handle form submissions with proper validation and security measures</li>
+                <li><strong>Performance Optimization:</strong> Implemented caching strategies, database optimization, and CDN integration to ensure fast loading times despite the platform's high traffic volume</li>
+            </ul>
+            
+        </div>
+        <div class="skills">
+            <span class="skill-tag">Django</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Content Management</span>
+            <span class="skill-tag">Form Processing</span>
+            <span class="skill-tag">SEO Optimization</span>
+            <span class="skill-tag">Mobile Responsive</span>
+            <span class="skill-tag">Admin Interfaces</span>
+            <span class="skill-tag">Performance Optimization</span>
+        </div>
+        <div class="modal-gallery">
+            <img src="Website/Screenshot 2025-05-30 at 16.10.08.png" alt="Crop2Cash Homepage" class="modal-image">
+            <img src="Website/Screenshot 2025-05-30 at 16.10.29.png" alt="Crop2Cash Solutions" class="modal-image">
+        </div>
+    </div>
+</div>
+
+<div id="nhfa-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('nhfa-modal')">&times;</span>
+        <h3>NHFA - National Hotline for Agriculture</h3>
+        <div class="modal-description">
+            <p>The National Hotline for Agriculture (NHFA) is a groundbreaking AI-powered agricultural advisory system that bridges the digital divide by providing expert farming guidance through a simple toll-free phone line. This innovative solution democratizes access to agricultural expertise for smallholder farmers across Nigeria, regardless of their location, literacy level, or smartphone access.</p>
+
+            <h4>Core Features & Architecture:</h4>
+            <ul>
+                <li><strong>AI-Powered Advisory Engine:</strong> Developed sophisticated natural language processing capabilities to understand farmer queries in multiple local languages and provide contextually relevant agricultural advice based on location, season, and crop type</li>
+                <li><strong>Two-Way Communication System:</strong> Engineered interactive voice response (IVR) system enabling farmers to ask follow-up questions, report issues, and receive personalized recommendations through natural conversation flow</li>
+                <li><strong>Real-Time Knowledge Base:</strong> Built dynamic content management system allowing agricultural experts to update advisories, seasonal guidelines, pest alerts, and weather-related farming recommendations in real-time</li>
+                <li><strong>Multi-Language Support:</strong> Implemented voice recognition and text-to-speech capabilities supporting major Nigerian languages including Hausa, Yoruba, Igbo, and English to ensure accessibility across diverse farming communities</li>
+                <li><strong>Call Analytics & Insights:</strong> Developed comprehensive analytics dashboard tracking call patterns, common farmer queries, regional agricultural challenges, and system performance metrics for continuous improvement</li>
+                <li><strong>Integration Architecture:</strong> Built robust APIs connecting with weather services, crop databases, market price feeds, and agricultural research institutions to provide the most current and accurate information</li>
+                <li><strong>Scalable Infrastructure:</strong> Architected cloud-based system capable of handling thousands of concurrent calls while maintaining low latency and high availability across Nigeria's telecommunications infrastructure</li>
+            </ul>
+
+            <p>The NHFA system has revolutionized agricultural extension services by making expert knowledge accessible through the most ubiquitous technology in rural Nigeria - the basic mobile phone. This breakthrough innovation ensures that every farmer, regardless of their technological sophistication, can access world-class agricultural guidance when they need it most.</p>
+        </div>
+        <div class="skills">
+            <span class="skill-tag">Django</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">AI/NLP</span>
+            <span class="skill-tag">Voice Processing</span>
+            <span class="skill-tag">IVR Systems</span>
+            <span class="skill-tag">Multi-language</span>
+            <span class="skill-tag">Real-time Analytics</span>
+            <span class="skill-tag">Telecom APIs</span>
+        </div>
+        <div class="modal-gallery">
+            <img src="USSD and NHFA/Screenshot 2025-05-31 at 23.47.08.png" alt="NHFA Dashboard" class="modal-image">
+            <img src="USSD and NHFA/Screenshot 2025-05-31 at 23.47.28.png" alt="NHFA Analytics" class="modal-image">
+        </div>
+    </div>
+</div>
+
+<div id="ussd-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('ussd-modal')">&times;</span>
+        <h3>CashCard USSD Platform</h3>
+        <div class="modal-description">
+            <p>The CashCard USSD Platform is a comprehensive financial inclusion solution specifically designed for rural farmers and agricultural communities in Nigeria. Built on USSD technology to ensure accessibility on even the most basic mobile phones, this platform transforms how farmers manage their finances, access agricultural inputs, and conduct business transactions.</p>
+            
+            <h4>Platform Capabilities:</h4>
+            <ul>
+                <li><strong>Agricultural Marketplace:</strong> Developed a complete USSD-based e-commerce system allowing farmers to browse, compare, and purchase agricultural inputs including certified seeds, fertilizers, pesticides, insecticides, and farming equipment. Features include product catalogs, price comparisons, supplier ratings, and secure ordering workflows</li>
+                <li><strong>Digital Wallet System:</strong> Architected a robust financial wallet supporting multiple transaction types including deposits, withdrawals, transfers, bill payments, and agricultural loan disbursements. Integrated with major Nigerian payment processors and banks for seamless money movement</li>
+                <li><strong>Personal Bookkeeping:</strong> Built intuitive financial record-keeping system helping farmers track income from crop sales, expenses for inputs and labor, loan repayments, and seasonal cash flow patterns. Generates simple financial reports accessible through USSD menus</li>
+                <li><strong>Savings & Credit Integration:</strong> Developed savings account functionality with interest calculations, automated savings plans, and integration with microfinance institutions to facilitate agricultural loans and credit scoring based on transaction history</li>
+                <li><strong>Market Price Information:</strong> Implemented real-time commodity price feeds allowing farmers to check current market prices for their crops across different markets and make informed selling decisions</li>
+                <li><strong>Group Financial Services:</strong> Engineered cooperative and farmer group management features including group savings (tontines), bulk purchasing discounts, and shared equipment financing</li>
+                <li><strong>Multi-Language USSD Interface:</strong> Designed user-friendly USSD menus supporting multiple Nigerian languages with clear navigation paths optimized for users with varying literacy levels</li>
+                <li><strong>Security & Compliance:</strong> Implemented multi-factor authentication, transaction limits, fraud detection algorithms, and full compliance with Central Bank of Nigeria (CBN) regulations for digital financial services</li>
+            </ul>
+            
+            <p>The CashCard USSD Platform has democratized financial services for rural communities, enabling farmers to participate in the formal economy, build credit histories, and access essential agricultural resources through technology that works on every mobile phone. This innovation has significantly improved financial inclusion and agricultural productivity across rural Nigeria.</p>
+        </div>
+        <div class="skills">
+            <span class="skill-tag">Django</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">USSD Development</span>
+            <span class="skill-tag">Payment Integration</span>
+            <span class="skill-tag">Financial Systems</span>
+            <span class="skill-tag">Mobile Banking</span>
+            <span class="skill-tag">Security & Compliance</span>
+            <span class="skill-tag">Microservices</span>
+        </div>
+        <div class="modal-gallery">
+            <img src="USSD and NHFA/Screenshot 2025-05-31 at 23.47.28.png" alt="CashCard USSD Interface" class="modal-image">
+            <img src="USSD and NHFA/Screenshot 2025-05-31 at 23.47.08.png" alt="USSD Transaction Flow" class="modal-image">
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
